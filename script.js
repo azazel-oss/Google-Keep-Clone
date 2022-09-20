@@ -2,7 +2,9 @@ class App {
   constructor() {
     this.notes = [];
 
+    this.$placeholder = document.querySelector("#placeholder");
     this.$form = document.querySelector("#form");
+    this.$notes = document.querySelector("#notes");
     this.$noteTitle = document.querySelector("#note-title");
     this.$noteText = document.querySelector("#note-text");
     this.$formButtons = document.querySelector("#form-buttons");
@@ -47,6 +49,8 @@ class App {
     this.$form.classList.remove("form-open");
     this.$noteTitle.style.display = "none";
     this.$formButtons.style.display = "none";
+    this.$noteTitle.value = "";
+    this.$noteText.value = "";
   }
 
   addNote(note) {
@@ -57,7 +61,30 @@ class App {
       id: this.notes.length > 0 ? this.notes[this.notes.length - 1].id + 1 : 1,
     };
     this.notes = [...this.notes, newNote];
-    console.log(this.notes);
+    this.displayNotes();
+    this.closeForm();
+  }
+
+  displayNotes() {
+    const hasNotes = this.notes.length > 0;
+    this.$placeholder.style.display = hasNotes ? "none" : "flex";
+
+    this.$notes.innerHTML = this.notes
+      .map(
+        (note) => `
+        <div style="background: ${note.color};" class="note">
+          <div class="${note.title && "note-title"}">${note.title}</div>
+          <div class="note-text">${note.text}</div>
+          <div class="toolbar-container">
+            <div class="toolbar">
+              <img class="toolbar-color" src="https://icon.now.sh/palette">
+              <img class="toolbar-delete" src="https://icon.now.sh/delete">
+            </div>
+          </div>
+        </div>
+    `
+      )
+      .join("");
   }
 }
 
