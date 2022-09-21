@@ -30,10 +30,9 @@ main {
 }
 
 #placeholder-logo {
-  height: 120px;
-  margin: 20px;
+  font-size: 5rem;
+  margin-bottom: 0.5em;
   opacity: 0.1;
-  width: 120px;
 }
 
 #placeholder-text {
@@ -262,7 +261,7 @@ input:focus {
   align-items: center;
   color: rgba(0, 0, 0, 0.54);
   display: flex;
-  font-size: 12px;
+  font-size: 16px;
   line-height: 26px;
   margin: 4px 0;
   position: relative;
@@ -276,13 +275,17 @@ input:focus {
 
 .toolbar-color,
 .toolbar-delete {
-  height: 20px;
+  padding: 0.2em;
   margin: 0 8px;
-  width: 20px;
   margin: 0 3px;
   cursor: pointer;
   color: #202124;
-  opacity: 0.71;
+  opacity: 0.61;
+}
+
+.toolbar-color:hover,
+.toolbar-delete:hover {
+  opacity: 1;
 }
 
 .toolbar-color-modal {

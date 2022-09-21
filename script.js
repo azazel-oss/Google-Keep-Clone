@@ -1,3 +1,4 @@
+// TODO: Add favicons in html
 class App {
   constructor() {
     this.notes = JSON.parse(localStorage.getItem("notes")) || [];
@@ -114,14 +115,14 @@ class App {
     }
   }
 
-  closeModal(event) {
+  closeModal() {
     this.editNote();
     this.$modal.classList.toggle("open-modal");
   }
 
   openTooltip(event) {
     if (!event.target.matches(".toolbar-color")) return;
-    this.id = event.target.nextElementSibling.dataset.id;
+    this.id = event.target.dataset.id;
     const noteCoords = event.target.getBoundingClientRect();
     const horizontal = noteCoords.left;
     const vertical = window.scrollY - 20;
@@ -202,16 +203,16 @@ class App {
           <div class="note-text">${note.text}</div>
           <div class="toolbar-container">
             <div class="toolbar">
-              <img class="toolbar-color" data-id=${
+              <i class="fa-solid fa-pen-to-square toolbar-color" data-id=${
                 note.id
-              } src="https://icon.now.sh/palette">
-              <img data-id=${
+              }></i>
+              <i class="fa-solid fa-trash-can toolbar-delete" data-id=${
                 note.id
-              } class="toolbar-delete" src="https://icon.now.sh/delete">
+              }></i>
             </div>
           </div>
         </div>
-     `
+        `
       )
       .join("");
   }
